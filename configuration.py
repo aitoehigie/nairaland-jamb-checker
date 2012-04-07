@@ -12,24 +12,19 @@ settings = {
             'server.reverse_dns': False,
             'server.thread_pool': 10,
             'server.environment': "development",
-	    'request.show_tracebacks': False
+	    'request.show_tracebacks': False,
+	    'tools.sessions.on': True,
+	    'tools.sessions.storage_type': "file",
+	    'tools.sessions.storage_path': "sessions/",
+	    'tools.sessions.timeout': 60
          },
 	'/': {
+	'tools.caching.on': True,
+	'tools.caching.delay': 3600,
 	'tools.staticdir.root': os.path.abspath(os.path.curdir)
 	},
 	'/static': {
 	  'tools.staticdir.on': True,
-          'tools.staticdir.dir': 'static/'
-         },
-	'/static/images/': {
-	 'tools.staticdir.on': True,
-	 'tools.staticdir.root': os.path.abspath(os.path.curdir),
-         'tools.staticdir.dir': 'static/images/'
-         },
-	'/static/js/': {
-	 'tools.staticdir.on': True,
-	 'tools.staticdir.root': os.path.abspath(os.path.curdir),
-         'tools.staticdir.dir': 'static/js/'
-         },
-	
+          'tools.staticdir.dir': 'static'
+         }	
 }

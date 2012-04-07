@@ -6,6 +6,7 @@ from configuration import settings
 from configuration import admin_login
 from jinja2 import Environment, FileSystemLoader
 env = Environment(loader=FileSystemLoader('views'))
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
 
 class Jamb(object):
@@ -28,8 +29,10 @@ class Jamb(object):
 	@cherrypy.tools.allow(methods=['POST'])
 	def admin_login(self, password=None):
 		if password == admin_login["password"]:
+			cherrypy.session["username"] = "Admininstrator"
+			cherrypy.session["logged_in"] = True
 			tmpl = env.get_template("admin_loggedin.html")
-			return tmpl.render(target="Nairaland-Jamb-Checker Admininstrator", time=time.ctime())
+			return tmpl.render(target=cherrypy.session.get("username"), time=time.ctime())
 		else:	
 			raise cherrypy.HTTPError(401, "You are not allowed to view this resource!")
 	@expose
