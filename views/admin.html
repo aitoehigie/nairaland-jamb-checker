@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+<div class="row">
+<h1>Jamb Online</h1>
+<h3>Check your result</h3>
+<div class="alert alert-block">
+	<p>
+		<strong>How it works.
+		<br /><br />
+		To log in as administrator, just enter the admin password which is "nairaland". This will enable you to create the database for the first time,
+populate the database with dummy student data and do other sundary tasks
+	</p></strong>
+</div>
+	<br />
+</div>
+<div class="row">
+<ul class="nav nav-list pull-left">
+<li>
+<a href="/">Home</a>
+</li>
+<li class="active">
+<a href="admin">Administrator Login</a>
+</li>
+<li>
+<a href="pin">Generate PIN</a>
+</li>
+</ul>
+<div class="span4">
+</div>
+<div class="span8">
+	<form method="post" action="admin_login" class="form-vertical well">
+		<fieldset>
+		<legend>Login</login>
+		<label for="password">admin password</label>
+		<input type="password" name='password' class="input-large" placeholder="Enter the admin password" >
+		<br>
+		<button type="submit" class="btn btn-success btn-large">
+			Login
+		</button>
+		</fieldset>
+	</form>
+</div>
+</div>
+</div>
+{% endblock content %}

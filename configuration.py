@@ -1,5 +1,5 @@
 import os
-
+admin_login = {"password": "nairaland"}
 settings = { 
          'global': {
             'server.socket_port' : 8007,
@@ -11,11 +11,25 @@ settings = {
             'server.log_file': "",
             'server.reverse_dns': False,
             'server.thread_pool': 10,
-            'server.environment': "development"
+            'server.environment': "development",
+	    'request.show_tracebacks': False
          },
+	'/': {
+	'tools.staticdir.root': os.path.abspath(os.path.curdir)
+	},
 	'/static': {
 	  'tools.staticdir.on': True,
-          'tools.staticdir.root': os.path.abspath(os.path.curdir),
-          'tools.staticdir.dir': 'static'
+          'tools.staticdir.dir': 'static/'
          },
-      }
+	'/static/images/': {
+	 'tools.staticdir.on': True,
+	 'tools.staticdir.root': os.path.abspath(os.path.curdir),
+         'tools.staticdir.dir': 'static/images/'
+         },
+	'/static/js/': {
+	 'tools.staticdir.on': True,
+	 'tools.staticdir.root': os.path.abspath(os.path.curdir),
+         'tools.staticdir.dir': 'static/js/'
+         },
+	
+}
