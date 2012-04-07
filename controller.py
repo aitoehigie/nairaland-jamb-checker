@@ -32,6 +32,7 @@ class Jamb(object):
 			cherrypy.session["username"] = "Admininstrator"
 			cherrypy.session["logged_in"] = True
 			tmpl = env.get_template("admin_loggedin.html")
+			cherrypy.lib.caching.Cache.clear()
 			return tmpl.render(target=cherrypy.session.get("username"), time=time.ctime())
 		else:	
 			raise cherrypy.HTTPError(401, "You are not allowed to view this resource!")
@@ -52,5 +53,5 @@ root = Jamb()
 
 if __name__ == "__main__":
     cherrypy.tree.mount(root, "/", config=settings)
-    cherrypy.engine.start() 
+    cherrypy.engine.start()
     cherrypy.engine.block()

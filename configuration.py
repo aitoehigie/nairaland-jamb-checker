@@ -2,7 +2,7 @@ import os
 admin_login = {"password": "nairaland"}
 settings = { 
          'global': {
-            'server.socket_port' : 8007,
+            'server.socket_port' : 7077,
             'server.socket_host': "127.0.0.1",
             'server.socket_file': "",
             'server.socket_queue_size': 5,
@@ -22,6 +22,9 @@ settings = {
 	'tools.caching.on': True,
 	'tools.caching.delay': 3600,
 	'tools.staticdir.root': os.path.abspath(os.path.curdir)
+	},
+	"/pin": {
+	"tools.caching.on": False
 	},
 	'/static': {
 	  'tools.staticdir.on': True,
