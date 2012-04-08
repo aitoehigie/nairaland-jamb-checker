@@ -19,10 +19,11 @@ the 3rd party libraries.
 How to RUN
 *******************************************
 1. Unzip the source file and CD to the unzipped folder
-2. Run the main file called controller.py by doing "python controller.py"
-3. Open your browser and enter the address 127.0.0.1:7077
-4. On your 1st run of this program, kindly go to the admin section and follow the instructions
-   there in order to create the database, generate the dummy data and perform other sundary activities.
+2. Before doing anything, go to the DATABASE folder and run the db.sql file to create the database.
+3. Run the main file called controller.py by doing "python controller.py"
+4. Open your browser and enter the address 127.0.0.1:7077
+5. On your 1st run of this program, kindly go to the admin section and follow the instructions
+   there in order to generate the dummy data and perform other sundary activities.
 
 You can always contact me at twitter.com/pystar or aitoehigie[at]gmail.com if you need any help
 running this program. 
