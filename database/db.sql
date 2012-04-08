@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS nairaland;
 CREATE DATABASE nairaland;
-USE nairaland;
+USE DATABASE nairaland;
 
 CREATE TABLE `students` (
 `id` INTEGER NOT NULL AUTO_INCREMENT ,

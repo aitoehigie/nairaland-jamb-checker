@@ -1,5 +1,6 @@
 import cherrypy
 import random
+import dummpy
 import os, time, string
 import mysql.connector
 from cherrypy import expose
@@ -10,11 +11,8 @@ from jinja2 import Environment, FileSystemLoader
 env = Environment(loader=FileSystemLoader('views'))
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-def dbconnection(self):
-	db = mysql.connector.Connect(user=dbsettings["user"], password=dbsettings["password"], host=dbsettings["host"], 
-	port=dbsettings["port"], database=dbsettings["database"])
+db = mysql.connector.Connect(user=dbsettings["user"], password=dbsettings["password"], host=dbsettings["host"], port=dbsettings["port"], database=dbsettings["database"])
 
-cherrypy.engine.subscribe('start_thread',dbconnection)
 
 class Jamb(object):
 	@expose
@@ -33,15 +31,19 @@ class Jamb(object):
 		return tmpl.render()
 
 	@expose
+	#def datagen(self):
+		#cursor = db.cursor()
+		#cursor.execute("INSERT INTO students student name=%item
+
+		
+
+	@expose
 	def buycard(self):
 		cur = db.cursor()
 		cur.execute("select name from person")
 		rows = cur.fetchall()
 		tmpl = env.get_template("buycard.html")
 		return tmpl.render(target=rows)
-		#names = ["ehigie", "aito", "pascal", "edeoghon", "aitokhuehi", "thedon"]
-		#for item in names:			
-			#cur.execute("insert into person set name='%s'" %(item))
 
 	@expose
 	@cherrypy.tools.allow(methods=['POST'])

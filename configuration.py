@@ -11,7 +11,7 @@ dbsettings = {
 admin_login = {"password": "nairaland"}
 settings = { 
          'global': {
-            'server.socket_port' : 7077,
+            'server.socket_port' : 7078,
             'server.socket_host': "127.0.0.1",
             'server.socket_file': "",
             'server.socket_queue_size': 5,
