@@ -1,13 +1,20 @@
 import cherrypy
 import random
 import os, time, string
+import mysql.connector
 from cherrypy import expose
+from configuration import dbsettings
 from configuration import settings
 from configuration import admin_login
 from jinja2 import Environment, FileSystemLoader
 env = Environment(loader=FileSystemLoader('views'))
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
+def dbconnection(self):
+	db = mysql.connector.Connect(user=dbsettings["user"], password=dbsettings["password"], host=dbsettings["host"], 
+	port=dbsettings["port"], database=dbsettings["database"])
+
+cherrypy.engine.subscribe('start_thread',dbconnection)
 
 class Jamb(object):
 	@expose
@@ -26,16 +33,26 @@ class Jamb(object):
 		return tmpl.render()
 
 	@expose
+	def buycard(self):
+		cur = db.cursor()
+		cur.execute("select name from person")
+		rows = cur.fetchall()
+		tmpl = env.get_template("buycard.html")
+		return tmpl.render(target=rows)
+		#names = ["ehigie", "aito", "pascal", "edeoghon", "aitokhuehi", "thedon"]
+		#for item in names:			
+			#cur.execute("insert into person set name='%s'" %(item))
+
+	@expose
 	@cherrypy.tools.allow(methods=['POST'])
 	def admin_login(self, password=None):
 		if password == admin_login["password"]:
 			cherrypy.session["username"] = "Admininstrator"
 			cherrypy.session["logged_in"] = True
 			tmpl = env.get_template("admin_loggedin.html")
-			cherrypy.lib.caching.Cache.clear()
 			return tmpl.render(target=cherrypy.session.get("username"), time=time.ctime())
 		else:	
-			raise cherrypy.HTTPError(401, "You are not allowed to view this resource!")
+			raise cherrypy.HTTPRedirect("admin")
 	@expose
 	def pin(self):
 		pin = []

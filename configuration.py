@@ -1,4 +1,13 @@
 import os
+import mysql.connector
+dbsettings = {
+		"user":"root",
+		"password":"",
+		"database":"nairaland",
+		"host":"127.0.0.1",
+		"port":3306
+	     }
+
 admin_login = {"password": "nairaland"}
 settings = { 
          'global': {

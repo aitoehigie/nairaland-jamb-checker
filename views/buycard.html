@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+<div class="row">
+<h1>Jamb Online</h1>
+<h3>Check your result</h3>
+<div class="alert alert-block">
+	<p>
+		<strong>How it works
+		<br />
+		PLS NOTE: If this is your first run of this program, kindly go to the admin section and follow the instructions there before coming back here.
+		To check your examination result, enter your registration number, select your examination year and your 4-Digit PIN.
+</strong>	
+</p>
+</div>
+	<br />
+</div>
+<div class="row">
+<ul class="nav nav-list pull-left">
+<li class="active">
+<a href="/">Home</a>
+</li>
+<ul class="nav nav-list pull-left">
+<li><a href="buycard">Buy scratch card</li>
+</ul>
+<li>
+<a href="admin">Administrator Login</a>
+</li>
+<li>
+<a href="pin">Generate PIN</a>
+</li>
+</ul>
+<div class="span4">
+</div>
+<div class="span8">
+<ul>
+{% for item in target: %}
+<li> {{item[0]}} </li>
+{% endfor %}
+</ul>
+</ul>	
+</div>
+</div>
+{% endblock content %}
+
+
