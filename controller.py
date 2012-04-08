@@ -1,5 +1,5 @@
 import cherrypy
-import random
+from random import choice
 import dummy
 import os, time, string
 import mysql.connector
@@ -31,11 +31,10 @@ class Jamb(object):
 		return tmpl.render()
 
 	@expose
-	#def datagen(self):
-		#cursor = db.cursor()
-		#cursor.execute("INSERT INTO students student name=%item
-
-		
+	def datagen(self):
+		cursor = db.cursor()
+		for item in dummy.names:
+			cursor.execute("INSERT INTO students studentname=%s, age=%d, sex=%s, registrationnumber=%d, pin=%d", (choice(dummy.names), choice(dummy.age), choice(dummy.sex), dummy.registrationnumber, dummy.pin))
 
 	@expose
 	def buycard(self):
@@ -55,16 +54,6 @@ class Jamb(object):
 			return tmpl.render(target=cherrypy.session.get("username"), time=time.ctime())
 		else:	
 			raise cherrypy.HTTPRedirect("admin")
-	@expose
-	def pin(self):
-		pin = []
-		times = 4
-		while times >= 1:
-			pin.append(random.randrange(0, 9))
-			times = times - 1
-		tmpl = env.get_template("pin.html")
-		pin = str(pin[0])+str(pin[1])+str(pin[2])+str(pin[3])
-		return tmpl.render(pin= pin)
 	
 
 cherrypy.config.update(settings)
